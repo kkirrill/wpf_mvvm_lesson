@@ -11,10 +11,11 @@ namespace wpf_mvvm_lesson.Infrastructure.Commands
     {
         private readonly Action<object> _Execute;
         private readonly Func<object, bool> _CanExecute;
+
         public LamdaCommand(Action<object> Execute, Func<object, bool> CanExecute = null)
         {
-            Execute = _Execute ?? throw new ArgumentNullException(nameof(Execute));
-            CanExecute = _CanExecute;
+            _Execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
+            _CanExecute = CanExecute;
 
         }
 

@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using wpf_mvvm_lesson.Infrastructure.Commands;
 using wpf_mvvm_lesson.ViewModels.Base;
+
 
 namespace wpf_mvvm_lesson.ViewModels
 {
@@ -40,5 +44,33 @@ namespace wpf_mvvm_lesson.ViewModels
         }
 
         #endregion
+
+        #region Команды
+
+        #region CloseApplicationCommand 
+
+        public ICommand CloseApplicationCommand { get; }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+
+        private void OnCloseApplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+
+
+
+        #endregion
+        #endregion
+        public MainWindowViewModel()
+        {
+            #region Команды
+
+            CloseApplicationCommand = new LamdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+            #endregion
+        }
+
+        
     }
 }
