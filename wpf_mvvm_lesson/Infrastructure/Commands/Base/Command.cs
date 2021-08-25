@@ -20,5 +20,5 @@ namespace wpf_mvvm_lesson.Infrastructure.Commands.Base
 
         public abstract void Execute(object parameter);
 
-    }
+    } 
 }
