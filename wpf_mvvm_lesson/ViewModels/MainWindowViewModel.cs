@@ -17,7 +17,7 @@ namespace wpf_mvvm_lesson.ViewModels
 
         private IEnumerable<DataPoint> _TestDataPoints;
 
-        private IEnumerable<DataPoint> TestDataPoints { get => _TestDataPoints; set => Set(ref _TestDataPoints, value); }
+        public IEnumerable<DataPoint> TestDataPoints { get => _TestDataPoints; set => Set(ref _TestDataPoints, value); }
 
         #endregion
         #region Заголовок окна
