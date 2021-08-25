@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Button" HorizontalAlignment="Left" Margin="41,37,0,0" VerticalAlignment="Top" Width="123" Height="36"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="339,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="86,234,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="439,73,0,0" VerticalAlignment="Top"/>
+        <Slider HorizontalAlignment="Left" Margin="65,90,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="30" Width="260">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.667"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+
     </Grid>
 </Window>
