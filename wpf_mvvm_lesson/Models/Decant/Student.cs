@@ -18,6 +18,8 @@ namespace wpf_mvvm_lesson.Models.Decant
         
         public double  Rating { get; set; }
 
+        public string Description { get; set; }
+
     }
 
     internal class Group
@@ -25,6 +27,8 @@ namespace wpf_mvvm_lesson.Models.Decant
         public string Name { get; set; }
 
         public ICollection<Student> Students { get; set; }
+
+        public string Description { get; set; }
 
     }
 }
