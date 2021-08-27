@@ -8,11 +8,17 @@ using System.Windows.Input;
 using wpf_mvvm_lesson.Infrastructure.Commands;
 using wpf_mvvm_lesson.ViewModels.Base;
 using wpf_mvvm_lesson.Models;
+using System.Collections.ObjectModel;
+using wpf_mvvm_lesson.Models.Decant;
 
 namespace wpf_mvvm_lesson.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        /*-------------------------------------------------------------------------------------*/
+
+        public ObservableCollection<Group> Groups { get; set; }
+
         #region Тестовые данные для графика
 
         private IEnumerable<DataPoint> _TestDataPoints;
@@ -20,6 +26,7 @@ namespace wpf_mvvm_lesson.ViewModels
         public IEnumerable<DataPoint> TestDataPoints { get => _TestDataPoints; set => Set(ref _TestDataPoints, value); }
 
         #endregion
+
         #region Заголовок окна
         /// <summary> Заголовок окна </summary>
         private string _Title = "Анализ статистики CV19";
@@ -52,6 +59,8 @@ namespace wpf_mvvm_lesson.ViewModels
 
         #endregion
 
+        /*-------------------------------------------------------------------------------------*/
+
         #region Команды
 
         #region CloseApplicationCommand 
@@ -69,6 +78,9 @@ namespace wpf_mvvm_lesson.ViewModels
 
         #endregion
         #endregion
+
+        /*-------------------------------------------------------------------------------------*/
+
         public MainWindowViewModel()
         {
             #region Команды
@@ -76,6 +88,7 @@ namespace wpf_mvvm_lesson.ViewModels
             CloseApplicationCommand = new LamdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
 
             #endregion
+
 
             var data_points = new List<DataPoint>((int)(360 / 0.1));
             for(var x = 0d; x <= 360; x += 0.1)
@@ -85,7 +98,27 @@ namespace wpf_mvvm_lesson.ViewModels
                 data_points.Add( new DataPoint { XValue = x, YValue = y });
 
             }
+
             TestDataPoints = data_points;
+
+            var students_index = 1;
+            var students = Enumerable.Range(1, 10).Select(i => new Student
+            {
+                Name = $"Name {students_index}",
+                Surname = $"Surname {students_index}",
+                Patronomic = $"Patronomic {students_index++}",
+                Birthday = DateTime.Now,
+                Rating = 0
+            }) ;
+
+            var groups = Enumerable.Range(1, 20).Select(i => new Group
+            {
+                Name = $"Группа {i}",
+                Students = new ObservableCollection<Student>(students)
+            });
+
+            Groups = new ObservableCollection<Group>(groups);
+
         }
 
         
