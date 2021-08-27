@@ -19,6 +19,14 @@ namespace wpf_mvvm_lesson.ViewModels
 
         public ObservableCollection<Group> Groups { get; set; }
 
+        #region Выбранная группа
+
+        private Group _SelectedGroup;
+
+        #endregion
+
+        public Group SelectedGroup { get => _SelectedGroup; set => Set(ref _SelectedGroup, value);  }
+
         #region Тестовые данные для графика
 
         private IEnumerable<DataPoint> _TestDataPoints;
