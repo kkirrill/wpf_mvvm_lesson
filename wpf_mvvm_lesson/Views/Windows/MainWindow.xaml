@@ -9,6 +9,7 @@
         xmlns:fa5="http://schemas.fontawesome.com/icons/"
         xmlns:cmd="clr-namespace:wpf_mvvm_lesson.Infrastructure.Commands"
         xmlns:local="clr-namespace:wpf_mvvm_lesson"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" Width="800">
@@ -45,6 +46,47 @@
             </StatusBarItem>
         </StatusBar>
         <TabControl>
+            <TabItem Header="Разнородные данныe" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Элементы">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat=Группа {0}}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+                            </DataTemplate>
+                            <!--<DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock>
+                                    <Run Foreground="Red" FontWeight="Bold">Строка:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock>
+                                    Число: <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>-->
+                        </GroupBox.Resources>
+                        <ListBox ItemsSource="{Binding CompositeCollection }"
+                             SelectedItem="{Binding SelectedCompositeValue}"/>
+                    </GroupBox>
+                    <GroupBox Header="выбранный элемент" Grid.Column="1">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat=Группа {0}}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+                        <ContentControl Content="{Binding SelectedCompositeValue}"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Студенты">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -54,8 +96,16 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <ListBox ItemsSource="{Binding Groups}"
                                  SelectedIndex="0"
-                                 DisplayMemberPath="Name"
-                                 SelectedItem="{Binding SelectedGroup}"/>
+                                 SelectedItem="{Binding SelectedGroup}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="decanat:Group">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов{0}]}" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}" 
