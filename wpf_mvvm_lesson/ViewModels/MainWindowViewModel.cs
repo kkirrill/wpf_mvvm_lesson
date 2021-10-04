@@ -19,13 +19,27 @@ namespace wpf_mvvm_lesson.ViewModels
 
         public ObservableCollection<Group> Groups { get; set; }
 
+        public object[] CompositeCollection { get; }
+
+        #region выбранный элемент с неизвестным типом
+
+        private object _SelectedCompositeValue;
+
+        public object SelectedCompositeValue { get => _SelectedCompositeValue; set => Set(ref _SelectedCompositeValue, value); }
+
+        #endregion
+
         #region Выбранная группа
 
         private Group _SelectedGroup;
 
         #endregion
 
+        #region Индекс выбранной группы
+
         public Group SelectedGroup { get => _SelectedGroup; set => Set(ref _SelectedGroup, value);  }
+
+        #endregion
 
         #region Тестовые данные для графика
 
@@ -126,6 +140,16 @@ namespace wpf_mvvm_lesson.ViewModels
             });
 
             Groups = new ObservableCollection<Group>(groups);
+
+            var data_list = new List<object>();
+            data_list.Add("hello world");
+            data_list.Add(123);
+            var group = Groups[1];
+            data_list.Add(group);
+            data_list.Add(group.Students[0]);
+
+            CompositeCollection = data_list.ToArray();
+             
 
         }
 
