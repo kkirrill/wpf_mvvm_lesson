@@ -15,6 +15,9 @@
         Height="450" Width="800">
     <Window.Resources>
         <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="white"/>
+        </Style>
     </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="Q" Command="{Binding CloseApplicationCommand}"/>
@@ -103,8 +106,8 @@
                                         <Setter Property="Background" Value="White"/>
                                     </Style>
                                 </UniformGrid.Resources>
-                                <Button Content="Добавить" Style="{StaticResource  ButtonStyle}" Command="{Binding CreateGroupCommand}"/>
-                                <Button Content="Удалить" Style="{StaticResource  ButtonStyle}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                                <Button Content="Добавить" Style="{StaticResource  ConfirmButton}" Command="{Binding CreateGroupCommand}"/>
+                                <Button Content="Удалить" Style="{StaticResource  DangerButton}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
                             <ListBox ItemsSource="{Binding Groups}"
                                  SelectedIndex="0"
