@@ -1,0 +1,22 @@
+name: .NET
+
+on: [push,pull_request]
+
+jobs:
+  build:
+    name: Use OS
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup msbuild
+      uses: microsoft/setup-msbuild@v1
+      
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      
+    - name: Restore Nuget packages
+      run: nuget restore wpf_mvvm_lesson.sln
+     
+    - name: Build Solution
+      run: msbuild wpf_mvvm_lesson.sln
