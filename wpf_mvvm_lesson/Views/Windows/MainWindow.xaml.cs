@@ -3,6 +3,5 @@
  
     public partial class MainWindow 
     {
-        public MainWindow() => InitializeComponent(); TRATATA
-    }
+        public MainWindow() => InitializeComponent();
 }
